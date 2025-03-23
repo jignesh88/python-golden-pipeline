@@ -2,17 +2,6 @@
 
 A comprehensive CI/CD pipeline template for Python applications, following modern best practices.
 
-## Repository Structure
-
-All pipeline files are located in the `python-pipeline` directory and include:
-
-- **GitHub Actions Workflow**: Comprehensive CI/CD pipeline definition
-- **Docker Configuration**: Optimized multi-stage Dockerfile
-- **Testing Setup**: pytest configuration with coverage reporting
-- **Code Quality Tools**: Black, isort, Flake8, and MyPy configuration
-- **Security Scanning**: Bandit and Safety setup
-- **Sample Application**: A minimal FastAPI application
-
 ## Features
 
 - **Comprehensive Testing**: Unit tests with pytest and coverage reporting
@@ -33,4 +22,55 @@ All pipeline files are located in the `python-pipeline` directory and include:
 
 ## Getting Started
 
-See the README.md file in the `python-pipeline` directory for detailed instructions on how to use this template.
+### Prerequisites
+
+- Python 3.8+ installed
+- Docker installed (for local container testing)
+- Git
+
+### Installation
+
+1. Clone this repository
+2. Install development dependencies:
+
+```bash
+pip install -r requirements-dev.txt
+```
+
+### Local Development
+
+```bash
+# Run the application locally
+python -m src.main
+
+# Run tests
+pytest
+
+# Check code style
+black --check .
+isort --check .
+flake8 .
+mypy .
+
+# Format code
+black .
+isort .
+```
+
+### Docker
+
+```bash
+# Build the Docker image
+docker build -t python-app .
+
+# Run the Docker container
+docker run -p 8000:8000 python-app
+```
+
+## GitHub Actions Setup
+
+To use this pipeline with GitHub Actions, you need to configure the following secrets:
+
+- `CODECOV_TOKEN`: Token for uploading coverage reports to Codecov
+- `KUBE_CONFIG_STAGING`: Kubernetes configuration for staging environment
+- `KUBE_CONFIG_PRODUCTION`: Kubernetes configuration for production environment
